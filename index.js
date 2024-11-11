@@ -1,7 +1,11 @@
 const express = require("express");
 var app = express();
 const route = require("./routes");
+const cors = require("cors");
 const db = require("./config/db");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
 route(app);
 db.connect();
 app.listen(8000, function () {
