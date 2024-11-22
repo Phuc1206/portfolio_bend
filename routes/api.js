@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const { upload } = require("../middlewares/UploadImg");
 const apiController = require("../app/controller/apiController");
-router.get("/", apiController.home);
+router.get("/projects", apiController.getProjects);
+router.get("/journeys", apiController.getJourneys);
+router.post("/project", upload.array("images"), apiController.createProject);
 router.post("/login", apiController.login);
+router.post("/project/:projectId/comment", apiController.createComment);
+router.post("/project/:projectId/like", apiController.like);
+router.post("/journey", upload.single("image"), apiController.createJourney);
 module.exports = router;
