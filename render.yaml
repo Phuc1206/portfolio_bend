@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: my-app
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    repo: https://github.com/Phuc1206/portfolio_bend
+    branch: main
+    envVars:
+      - key: DATABASE_URL
+        value: mongodb+srv://phucccu1206:phuc123@porfolio.jy92a.mongodb.net/porfolio
