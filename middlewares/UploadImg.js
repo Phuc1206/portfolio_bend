@@ -7,7 +7,10 @@ const storage = multer.diskStorage({
     cb(null, "public/img"); // Đường dẫn thư mục lưu trữ hình ảnh
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Tạo tên tệp duy nhất
+    // Tạo tên tệp ngẫu nhiên và duy nhất
+    const uniqueSuffix =
+      Date.now() + "-" + crypto.randomBytes(4).toString("hex");
+    cb(null, uniqueSuffix + path.extname(file.originalname)); // Tên tệp độc nhất
   },
 });
 const upload = multer({ storage });
