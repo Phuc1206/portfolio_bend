@@ -1,6 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-
+const crypto = require("crypto");
 // Cấu hình Multer để lưu trữ ảnh
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
