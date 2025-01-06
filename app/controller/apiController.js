@@ -17,7 +17,7 @@ class apiController {
   async createProject(req, res, next) {
     const { name, role, description, techStack, link_github, link_live } =
       req.body;
-    const images = req.files.map((file) => `/img/${file.filename}`);
+    const images = req.files.map((file) => file.path);
     try {
       const newProject = new Project({
         name,
@@ -99,13 +99,14 @@ class apiController {
   }
   async createJourney(req, res, next) {
     const { year, content } = req.body;
-    const imagePath = req.file ? `/img/${req.file.filename}` : null;
+    const imagePath = req.file ? req.file.path : null;
 
     if (!year || !content || !imagePath) {
       return res
         .status(400)
         .json({ error: "Year, Content, and Image are required." });
     }
+
     try {
       const newJourney = new Journey({
         year,
